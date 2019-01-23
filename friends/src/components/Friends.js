@@ -18,7 +18,7 @@ class Friends extends Component {
                 })
             })
             .catch(err => {
-                if (err.response) {
+                if (err.response.data) {
                     const message = err.response.data.substring(
                         err.response.data.lastIndexOf('<pre>') + 5, 
                         err.response.data.lastIndexOf('</pre>')
