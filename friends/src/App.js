@@ -45,9 +45,9 @@ class App extends Component {
     }) 
   }
 
-  postFriend = (newFriends) => {
+  postFriend = (newFriend) => {
     axios
-      .post('http://localhost:5000/friends', newFriends)
+      .post('http://localhost:5000/friends', newFriend)
       .then(res => {
         this.setState({ friends: res.data})
       })
@@ -77,12 +77,21 @@ class App extends Component {
     }
   }
 
+  removeFriend = (e) => {
+    e.preventDefault();
+  }
+
   render() {
     return (
       <div>
         {this.state.error && <div>{this.state.error}</div>}
+        
         <h3>My Friends</h3>
-        <Friends friends={this.state.friends}/>
+        <Friends 
+          friends={this.state.friends}
+          removeFriend={this.removeFriend}
+          />
+        
         <h4>Want to be my friend?</h4>
         <NewFriend 
           addFriend={this.addFriend}
