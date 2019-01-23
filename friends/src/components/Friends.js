@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Table } from 'reactstrap';
 
 class Friends extends Component {
     state = {
@@ -34,16 +35,27 @@ class Friends extends Component {
       return (
         <div>
             {this.state.error && <div>{this.state.error}</div>}
-
-            <h3>My Friends:</h3>
-            {this.state.friends.map(friend => (
-                <div key={friend.id}>
-                    <div>Name: {friend.name}</div>
-                    <div>Age: {friend.age}</div>
-                    <div>Email: {friend.email}</div>
-                    <br></br>
-                </div>
-            ))}
+            <h3>My Friends</h3>
+            <Table striped>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {this.state.friends.map(friend => (
+                        <tr key={friend.id}>
+                            <th scope="row">{friend.id}</th>
+                            <td>{friend.name}</td>
+                            <td>{friend.age}</td>
+                            <td>{friend.email}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </Table>
         </div>
       );
     }
