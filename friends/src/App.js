@@ -88,9 +88,10 @@ class App extends Component {
     } 
   }
 
-  deleteFriend = (id) => {
+  deleteFriend = (e) => {
+    e.preventDefault();
     axios
-      .delete(`http://localhost:5000/friends/${id}`)
+      .delete(`http://localhost:5000/friends/${e.target.id}`)
       .then(res => {
         this.setState({ friends: res.data})
       })
@@ -106,11 +107,6 @@ class App extends Component {
           })  
         }   
       })
-  }
-
-  removeFriend = (e) => {
-    e.preventDefault();
-    this.deleteFriend(e.target.id)
   }
 
   putFriend = (id) => {
@@ -161,7 +157,7 @@ class App extends Component {
           <h3>My Friends</h3>
           <Friends 
             friends={this.state.friends}
-            removeFriend={this.removeFriend}
+            deleteFriend={this.deleteFriend}
             updateFriend={this.updateFriend}
             />
           
