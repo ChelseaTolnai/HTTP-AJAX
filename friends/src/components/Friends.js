@@ -6,20 +6,24 @@ const Friends = (props) => {
         <Table striped>
             <thead>
                 <tr>
-                    <th>#</th>
                     <th>Name</th>
                     <th>Age</th>
                     <th>Email</th>
-                    <th>Click "X" to Delete</th>
+                    <th>Update</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
                 {props.friends.map(friend => (
                     <tr key={friend.id}>
-                        <th scope="row">{friend.id}</th>
                         <td>{friend.name}</td>
                         <td>{friend.age}</td>
                         <td>{friend.email}</td>
+                        <td onClick={props.updateFriend}>
+                            <span id={friend.id} style={{fontWeight: "bold", cursor: "pointer"}}>
+                                +
+                            </span>
+                        </td>
                         <td onClick={props.removeFriend}>
                             <span id={friend.id} style={{fontWeight: "bold", cursor: "pointer"}}>
                                 X
