@@ -77,8 +77,29 @@ class App extends Component {
     }
   }
 
+  deleteFriend = (id) => {
+    axios
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(res => {
+        this.setState({ friends: res.data})
+      })
+      .catch(err => {
+        if (err.response) {
+          const message = err.response.data.substring(
+            err.response.data.lastIndexOf('<pre>') + 5, 
+            err.response.data.lastIndexOf('</pre>')
+          );
+          this.setState({
+            ...this.state, 
+            error: `Error ${err.response.status}: ${message}`,
+          })  
+        }   
+      })
+  }
+
   removeFriend = (e) => {
     e.preventDefault();
+    this.deleteFriend(e.target.id)
   }
 
   render() {
