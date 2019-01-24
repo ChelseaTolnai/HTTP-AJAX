@@ -24,7 +24,7 @@ const Friends = (props) => {
                                 +
                             </span>
                         </td>
-                        <td onClick={props.deleteFriend}>
+                        <td onClick={props.removeFriend}>
                             <span id={friend.id} style={{fontWeight: "bold", cursor: "pointer"}}>
                                 X
                             </span>
